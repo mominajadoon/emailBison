@@ -9,7 +9,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
-// 
+//
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGODB_URI, {
@@ -21,6 +21,8 @@ mongoose
 
 // Routes
 app.use("/api/auth", require("./Routes/authRoutes"));
+// Routes
+app.use("/api/test", require("./Routes/placementTestRoutes"));
 // app.use("/api/email", require("./Routes/emailRoutes"));
 
 const PORT = process.env.PORT || 5000;
