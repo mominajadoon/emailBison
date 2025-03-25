@@ -8,16 +8,11 @@ const app = express();
 
 //
 // Middleware
-const allowedOrigins = [
-  "http://localhost:8080",  // Your local frontend
-  "https://yourfrontend.com" // Your deployed frontend
-];
-
 app.use(cors({
-  origin: allowedOrigins, // Only allow specific origins
-  credentials: true, // Allow cookies, authorization headers
-  methods: "GET,POST,PUT,DELETE", // Allowed HTTP methods
-  allowedHeaders: "Content-Type,Authorization", // Allowed headers
+  origin: true, // Dynamically allows all origins
+  credentials: true, // Allow cookies & authentication headers
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
 }));
 
 app.use(express.json());
