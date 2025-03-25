@@ -5,11 +5,18 @@ const mongoose = require("mongoose");
 
 dotenv.config();
 const app = express();
+
 //
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: true, // Dynamically allows all origins
+  credentials: true, // Allow cookies & authentication headers
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+}));
+
 app.use(express.json());
-//
+// 
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGODB_URI, {
@@ -19,6 +26,7 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("MongoDB Connection Error:", err));
 
+//
 // Routes
 app.use("/api/auth", require("./Routes/authRoutes"));
 // Routes
